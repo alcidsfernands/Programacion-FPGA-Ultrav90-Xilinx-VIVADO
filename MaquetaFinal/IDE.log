@@ -1,0 +1,1279 @@
+19:03:44 INFO  : Launching XSCT server: xsct.bat -n  -interactive C:\Users\jon.montero\Downloads\MaquetaFinal\temp_xsdb_launch_script.tcl
+19:03:46 INFO  : Registering command handlers for Vitis TCF services
+19:03:46 INFO  : XSCT server has started successfully.
+19:03:46 INFO  : plnx-install-location is set to ''
+19:03:46 INFO  : Successfully done setting XSCT server connection channel  
+19:03:49 INFO  : Successfully done setting workspace for the tool. 
+19:03:49 INFO  : Successfully done query RDI_DATADIR 
+19:05:46 INFO  : Successfully done sdx_reload_mss "C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/zynqmp_fsbl/zynqmp_fsbl_bsp/system.mss"
+19:05:46 INFO  : Successfully done sdx_reload_mss "C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/zynqmp_pmufw/zynqmp_pmufw_bsp/system.mss"
+19:05:47 INFO  : Successfully done sdx_reload_mss "C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/psu_cortexa53_0/standalone_domain/bsp/system.mss"
+19:10:52 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:11:08 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:11:08 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:11:08 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:11:08 INFO  : 'jtag frequency' command is executed.
+19:11:08 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:11:08 INFO  : Context for 'APU' is selected.
+19:11:09 INFO  : System reset is completed.
+19:11:12 INFO  : 'after 3000' command is executed.
+19:11:12 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:11:16 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:11:16 INFO  : Context for 'APU' is selected.
+19:11:16 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:11:16 INFO  : 'configparams force-mem-access 1' command is executed.
+19:11:16 INFO  : Context for 'APU' is selected.
+19:11:16 INFO  : Boot mode is read from the target.
+19:11:16 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:11:16 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:11:17 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:11:17 INFO  : 'set bp_11_17_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:11:17 INFO  : 'con -block -timeout 60' command is executed.
+19:11:17 INFO  : 'bpremove $bp_11_17_fsbl_bp' command is executed.
+19:11:17 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:11:17 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:11:17 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:11:17 INFO  : 'configparams force-mem-access 0' command is executed.
+19:11:17 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_11_17_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_11_17_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:11:17 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:11:17 INFO  : 'con' command is executed.
+19:11:17 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:11:17 INFO  : Disconnected from the channel tcfchan#2.
+19:11:49 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:11:50 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:11:50 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:11:50 INFO  : 'jtag frequency' command is executed.
+19:11:50 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:11:50 INFO  : Context for 'APU' is selected.
+19:11:51 INFO  : System reset is completed.
+19:11:54 INFO  : 'after 3000' command is executed.
+19:11:54 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:11:57 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:11:57 INFO  : Context for 'APU' is selected.
+19:11:57 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:11:57 INFO  : 'configparams force-mem-access 1' command is executed.
+19:11:57 INFO  : Context for 'APU' is selected.
+19:11:57 INFO  : Boot mode is read from the target.
+19:11:57 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:11:57 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:11:58 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:11:58 INFO  : 'set bp_11_58_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:11:58 INFO  : 'con -block -timeout 60' command is executed.
+19:11:58 INFO  : 'bpremove $bp_11_58_fsbl_bp' command is executed.
+19:11:58 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:11:58 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:11:58 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:11:58 INFO  : 'configparams force-mem-access 0' command is executed.
+19:11:58 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_11_58_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_11_58_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:11:58 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:11:58 INFO  : 'con' command is executed.
+19:11:58 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:11:58 INFO  : Disconnected from the channel tcfchan#3.
+19:15:46 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:15:54 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:15:55 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:15:55 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:15:55 INFO  : 'jtag frequency' command is executed.
+19:15:55 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:15:55 INFO  : Context for 'APU' is selected.
+19:15:56 INFO  : System reset is completed.
+19:15:59 INFO  : 'after 3000' command is executed.
+19:15:59 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:16:02 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:16:02 INFO  : Context for 'APU' is selected.
+19:16:02 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:16:02 INFO  : 'configparams force-mem-access 1' command is executed.
+19:16:02 INFO  : Context for 'APU' is selected.
+19:16:02 INFO  : Boot mode is read from the target.
+19:16:02 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:16:02 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:16:03 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:16:03 INFO  : 'set bp_16_3_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:16:04 INFO  : 'con -block -timeout 60' command is executed.
+19:16:04 INFO  : 'bpremove $bp_16_3_fsbl_bp' command is executed.
+19:16:04 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:16:04 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:16:04 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:16:04 INFO  : 'configparams force-mem-access 0' command is executed.
+19:16:04 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_16_3_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_16_3_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:16:04 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:16:04 INFO  : 'con' command is executed.
+19:16:04 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:16:04 INFO  : Disconnected from the channel tcfchan#4.
+19:16:43 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:16:44 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:16:44 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:16:44 INFO  : 'jtag frequency' command is executed.
+19:16:44 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:16:44 INFO  : Context for 'APU' is selected.
+19:16:45 INFO  : System reset is completed.
+19:16:48 INFO  : 'after 3000' command is executed.
+19:16:48 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:16:51 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:16:51 INFO  : Context for 'APU' is selected.
+19:16:51 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:16:51 INFO  : 'configparams force-mem-access 1' command is executed.
+19:16:51 INFO  : Context for 'APU' is selected.
+19:16:51 INFO  : Boot mode is read from the target.
+19:16:51 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:16:51 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:16:52 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:16:52 INFO  : 'set bp_16_52_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:16:53 INFO  : 'con -block -timeout 60' command is executed.
+19:16:53 INFO  : 'bpremove $bp_16_52_fsbl_bp' command is executed.
+19:16:53 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:16:53 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:16:53 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:16:53 INFO  : 'configparams force-mem-access 0' command is executed.
+19:16:53 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_16_52_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_16_52_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:16:53 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:16:53 INFO  : 'con' command is executed.
+19:16:53 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:16:53 INFO  : Disconnected from the channel tcfchan#5.
+19:17:22 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:17:31 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:17:31 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:17:31 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:17:31 INFO  : 'jtag frequency' command is executed.
+19:17:31 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:17:31 INFO  : Context for 'APU' is selected.
+19:17:32 INFO  : System reset is completed.
+19:17:35 INFO  : 'after 3000' command is executed.
+19:17:35 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:17:39 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:17:39 INFO  : Context for 'APU' is selected.
+19:17:39 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:17:39 INFO  : 'configparams force-mem-access 1' command is executed.
+19:17:39 INFO  : Context for 'APU' is selected.
+19:17:39 INFO  : Boot mode is read from the target.
+19:17:39 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:17:39 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:17:39 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:17:39 INFO  : 'set bp_17_39_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:17:40 INFO  : 'con -block -timeout 60' command is executed.
+19:17:40 INFO  : 'bpremove $bp_17_39_fsbl_bp' command is executed.
+19:17:40 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:17:40 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:17:40 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:17:40 INFO  : 'configparams force-mem-access 0' command is executed.
+19:17:40 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_17_39_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_17_39_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:17:40 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:17:40 INFO  : 'con' command is executed.
+19:17:40 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:17:40 INFO  : Disconnected from the channel tcfchan#6.
+19:18:01 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:18:02 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:18:02 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:18:02 INFO  : 'jtag frequency' command is executed.
+19:18:02 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:18:02 INFO  : Context for 'APU' is selected.
+19:18:03 INFO  : System reset is completed.
+19:18:06 INFO  : 'after 3000' command is executed.
+19:18:06 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:18:09 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:18:09 INFO  : Context for 'APU' is selected.
+19:18:09 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:18:09 INFO  : 'configparams force-mem-access 1' command is executed.
+19:18:09 INFO  : Context for 'APU' is selected.
+19:18:09 INFO  : Boot mode is read from the target.
+19:18:09 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:18:09 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:18:10 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:18:10 INFO  : 'set bp_18_10_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:18:11 INFO  : 'con -block -timeout 60' command is executed.
+19:18:11 INFO  : 'bpremove $bp_18_10_fsbl_bp' command is executed.
+19:18:11 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:18:11 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:18:12 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:18:12 INFO  : 'configparams force-mem-access 0' command is executed.
+19:18:12 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_18_10_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_18_10_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:18:12 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:18:12 INFO  : 'con' command is executed.
+19:18:12 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:18:12 INFO  : Disconnected from the channel tcfchan#7.
+19:18:38 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:18:38 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:18:38 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:18:38 INFO  : 'jtag frequency' command is executed.
+19:18:38 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:18:38 INFO  : Context for 'APU' is selected.
+19:18:39 INFO  : System reset is completed.
+19:18:42 INFO  : 'after 3000' command is executed.
+19:18:43 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:18:46 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:18:46 INFO  : Context for 'APU' is selected.
+19:18:46 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:18:46 INFO  : 'configparams force-mem-access 1' command is executed.
+19:18:46 INFO  : Context for 'APU' is selected.
+19:18:46 INFO  : Boot mode is read from the target.
+19:18:46 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:18:46 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:18:46 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:18:47 INFO  : 'set bp_18_46_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:18:48 INFO  : 'con -block -timeout 60' command is executed.
+19:18:48 INFO  : 'bpremove $bp_18_46_fsbl_bp' command is executed.
+19:18:48 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:18:48 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:18:48 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:18:48 INFO  : 'configparams force-mem-access 0' command is executed.
+19:18:48 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_18_46_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_18_46_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:18:48 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:18:48 INFO  : 'con' command is executed.
+19:18:48 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:18:48 INFO  : Disconnected from the channel tcfchan#8.
+19:20:13 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:20:28 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:20:38 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:21:39 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:21:49 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:21:56 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:22:41 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:23:07 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:23:29 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:23:29 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:23:29 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:23:29 INFO  : 'jtag frequency' command is executed.
+19:23:29 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:23:29 INFO  : Context for 'APU' is selected.
+19:23:30 INFO  : System reset is completed.
+19:23:33 INFO  : 'after 3000' command is executed.
+19:23:33 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:23:36 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:23:36 INFO  : Context for 'APU' is selected.
+19:23:36 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:23:36 INFO  : 'configparams force-mem-access 1' command is executed.
+19:23:37 INFO  : Context for 'APU' is selected.
+19:23:37 INFO  : Boot mode is read from the target.
+19:23:37 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:23:37 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:23:37 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:23:37 INFO  : 'set bp_23_37_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:23:38 INFO  : 'con -block -timeout 60' command is executed.
+19:23:38 INFO  : 'bpremove $bp_23_37_fsbl_bp' command is executed.
+19:23:38 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:23:38 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:23:39 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:23:39 INFO  : 'configparams force-mem-access 0' command is executed.
+19:23:39 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_23_37_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_23_37_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:23:39 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:23:39 INFO  : 'con' command is executed.
+19:23:39 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:23:39 INFO  : Disconnected from the channel tcfchan#9.
+19:25:29 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:25:48 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:25:48 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:25:49 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:25:49 INFO  : 'jtag frequency' command is executed.
+19:25:49 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:25:49 INFO  : Context for 'APU' is selected.
+19:25:50 INFO  : System reset is completed.
+19:25:53 INFO  : 'after 3000' command is executed.
+19:25:53 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:25:56 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:25:56 INFO  : Context for 'APU' is selected.
+19:25:56 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:25:56 INFO  : 'configparams force-mem-access 1' command is executed.
+19:25:56 INFO  : Context for 'APU' is selected.
+19:25:56 INFO  : Boot mode is read from the target.
+19:25:56 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:25:56 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:25:57 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:25:57 INFO  : 'set bp_25_57_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:25:58 INFO  : 'con -block -timeout 60' command is executed.
+19:25:58 INFO  : 'bpremove $bp_25_57_fsbl_bp' command is executed.
+19:25:58 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:25:58 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:25:58 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:25:58 INFO  : 'configparams force-mem-access 0' command is executed.
+19:25:58 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_25_57_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_25_57_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:25:58 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:25:58 INFO  : 'con' command is executed.
+19:25:58 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:25:58 INFO  : Disconnected from the channel tcfchan#10.
+19:28:02 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:31:21 ERROR : Failed to connect to hardware server on host '127.0.0.1' and port '3121'.
+Reason: 'connect -url tcp:127.0.0.1:3121' is cancelled.
+19:31:21 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+19:31:40 INFO  : Launching XSCT server: xsct.bat -n  -interactive C:\Users\jon.montero\Downloads\MaquetaFinal\temp_xsdb_launch_script.tcl
+19:31:42 INFO  : XSCT server has started successfully.
+19:31:42 INFO  : Successfully done setting XSCT server connection channel  
+19:31:42 INFO  : plnx-install-location is set to ''
+19:31:42 INFO  : Successfully done setting workspace for the tool. 
+19:31:43 INFO  : Registering command handlers for Vitis TCF services
+19:31:43 INFO  : Successfully done query RDI_DATADIR 
+19:31:54 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:32:11 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:32:13 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:32:13 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:32:13 INFO  : 'jtag frequency' command is executed.
+19:32:13 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:32:13 INFO  : Context for 'APU' is selected.
+19:32:14 INFO  : System reset is completed.
+19:32:17 INFO  : 'after 3000' command is executed.
+19:32:18 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:32:21 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:32:22 INFO  : Context for 'APU' is selected.
+19:32:22 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:32:22 INFO  : 'configparams force-mem-access 1' command is executed.
+19:32:22 INFO  : Context for 'APU' is selected.
+19:32:22 INFO  : Boot mode is read from the target.
+19:32:22 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:32:22 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:32:23 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:32:23 INFO  : 'set bp_32_23_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:32:24 INFO  : 'con -block -timeout 60' command is executed.
+19:32:24 INFO  : 'bpremove $bp_32_23_fsbl_bp' command is executed.
+19:32:24 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:32:24 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:32:24 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:32:24 INFO  : 'configparams force-mem-access 0' command is executed.
+19:32:24 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_32_23_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_32_23_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:32:25 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:32:25 INFO  : 'con' command is executed.
+19:32:25 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:32:25 INFO  : Disconnected from the channel tcfchan#1.
+19:33:10 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:33:24 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:33:25 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:33:25 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:33:25 INFO  : 'jtag frequency' command is executed.
+19:33:25 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:33:25 INFO  : Context for 'APU' is selected.
+19:33:26 INFO  : System reset is completed.
+19:33:29 INFO  : 'after 3000' command is executed.
+19:33:29 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:33:32 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:33:32 INFO  : Context for 'APU' is selected.
+19:33:32 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:33:32 INFO  : 'configparams force-mem-access 1' command is executed.
+19:33:32 INFO  : Context for 'APU' is selected.
+19:33:32 INFO  : Boot mode is read from the target.
+19:33:32 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:33:32 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:33:33 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:33:33 INFO  : 'set bp_33_33_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:33:34 INFO  : 'con -block -timeout 60' command is executed.
+19:33:34 INFO  : 'bpremove $bp_33_33_fsbl_bp' command is executed.
+19:33:34 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:33:34 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:33:35 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:33:35 INFO  : 'configparams force-mem-access 0' command is executed.
+19:33:35 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_33_33_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_33_33_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:33:35 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:33:35 INFO  : 'con' command is executed.
+19:33:35 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:33:35 INFO  : Disconnected from the channel tcfchan#2.
+19:33:57 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:34:13 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:34:14 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:34:14 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:34:14 INFO  : 'jtag frequency' command is executed.
+19:34:14 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:34:14 INFO  : Context for 'APU' is selected.
+19:34:15 INFO  : System reset is completed.
+19:34:18 INFO  : 'after 3000' command is executed.
+19:34:18 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:34:21 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:34:21 INFO  : Context for 'APU' is selected.
+19:34:22 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:34:22 INFO  : 'configparams force-mem-access 1' command is executed.
+19:34:22 INFO  : Context for 'APU' is selected.
+19:34:22 INFO  : Boot mode is read from the target.
+19:34:22 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:34:22 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:34:22 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:34:22 INFO  : 'set bp_34_22_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:34:23 INFO  : 'con -block -timeout 60' command is executed.
+19:34:23 INFO  : 'bpremove $bp_34_22_fsbl_bp' command is executed.
+19:34:23 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:34:23 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:34:24 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:34:24 INFO  : 'configparams force-mem-access 0' command is executed.
+19:34:24 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_34_22_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_34_22_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:34:24 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:34:24 INFO  : 'con' command is executed.
+19:34:24 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:34:24 INFO  : Disconnected from the channel tcfchan#3.
+19:36:43 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:38:16 ERROR : Failed to connect to hardware server on host '127.0.0.1' and port '3121'.
+Reason: 'connect -url tcp:127.0.0.1:3121' is cancelled.
+19:38:16 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+19:38:34 INFO  : Launching XSCT server: xsct.bat -n  -interactive C:\Users\jon.montero\Downloads\MaquetaFinal\temp_xsdb_launch_script.tcl
+19:38:36 INFO  : XSCT server has started successfully.
+19:38:36 INFO  : plnx-install-location is set to ''
+19:38:36 INFO  : Successfully done setting XSCT server connection channel  
+19:38:36 INFO  : Successfully done setting workspace for the tool. 
+19:38:37 INFO  : Successfully done query RDI_DATADIR 
+19:38:37 INFO  : Registering command handlers for Vitis TCF services
+19:38:47 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:39:02 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:39:03 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:39:03 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:39:03 INFO  : 'jtag frequency' command is executed.
+19:39:03 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:39:04 INFO  : Context for 'APU' is selected.
+19:39:05 INFO  : System reset is completed.
+19:39:08 INFO  : 'after 3000' command is executed.
+19:39:08 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:39:12 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:39:12 INFO  : Context for 'APU' is selected.
+19:39:13 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:39:13 INFO  : 'configparams force-mem-access 1' command is executed.
+19:39:13 INFO  : Context for 'APU' is selected.
+19:39:13 INFO  : Boot mode is read from the target.
+19:39:13 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:39:13 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:39:13 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:39:13 INFO  : 'set bp_39_13_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:39:14 INFO  : 'con -block -timeout 60' command is executed.
+19:39:14 INFO  : 'bpremove $bp_39_13_fsbl_bp' command is executed.
+19:39:14 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:39:14 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:39:15 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:39:15 INFO  : 'configparams force-mem-access 0' command is executed.
+19:39:15 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_39_13_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_39_13_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:39:15 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:39:15 INFO  : 'con' command is executed.
+19:39:15 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:39:15 INFO  : Disconnected from the channel tcfchan#1.
+19:46:42 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:46:55 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:46:56 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:46:56 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:46:56 INFO  : 'jtag frequency' command is executed.
+19:46:56 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:46:56 INFO  : Context for 'APU' is selected.
+19:46:57 INFO  : System reset is completed.
+19:47:00 INFO  : 'after 3000' command is executed.
+19:47:00 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:47:03 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:47:03 INFO  : Context for 'APU' is selected.
+19:47:04 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:47:04 INFO  : 'configparams force-mem-access 1' command is executed.
+19:47:04 INFO  : Context for 'APU' is selected.
+19:47:04 INFO  : Boot mode is read from the target.
+19:47:04 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:47:04 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:47:04 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:47:04 INFO  : 'set bp_47_4_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:47:05 INFO  : 'con -block -timeout 60' command is executed.
+19:47:06 INFO  : 'bpremove $bp_47_4_fsbl_bp' command is executed.
+19:47:06 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:47:06 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:47:06 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:47:06 INFO  : 'configparams force-mem-access 0' command is executed.
+19:47:06 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_47_4_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_47_4_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:47:06 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:47:06 INFO  : 'con' command is executed.
+19:47:06 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:47:06 INFO  : Disconnected from the channel tcfchan#2.
+19:53:32 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+19:53:41 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+19:53:42 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+19:53:42 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+19:53:42 INFO  : 'jtag frequency' command is executed.
+19:53:42 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+19:53:42 INFO  : Context for 'APU' is selected.
+19:53:43 INFO  : System reset is completed.
+19:53:46 INFO  : 'after 3000' command is executed.
+19:53:46 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+19:53:49 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+19:53:49 INFO  : Context for 'APU' is selected.
+19:53:50 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+19:53:50 INFO  : 'configparams force-mem-access 1' command is executed.
+19:53:50 INFO  : Context for 'APU' is selected.
+19:53:50 INFO  : Boot mode is read from the target.
+19:53:50 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:53:50 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:53:50 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:53:50 INFO  : 'set bp_53_50_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+19:53:51 INFO  : 'con -block -timeout 60' command is executed.
+19:53:51 INFO  : 'bpremove $bp_53_50_fsbl_bp' command is executed.
+19:53:51 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:53:51 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+19:53:52 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+19:53:52 INFO  : 'configparams force-mem-access 0' command is executed.
+19:53:52 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_53_50_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_53_50_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+19:53:52 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+19:53:52 INFO  : 'con' command is executed.
+19:53:52 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+19:53:52 INFO  : Disconnected from the channel tcfchan#3.
+20:09:29 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+20:09:46 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:09:47 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+20:09:47 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+20:09:47 INFO  : 'jtag frequency' command is executed.
+20:09:47 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+20:09:47 INFO  : Context for 'APU' is selected.
+20:09:48 INFO  : System reset is completed.
+20:09:51 INFO  : 'after 3000' command is executed.
+20:09:51 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+20:09:54 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+20:09:54 INFO  : Context for 'APU' is selected.
+20:09:54 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+20:09:54 INFO  : 'configparams force-mem-access 1' command is executed.
+20:09:54 INFO  : Context for 'APU' is selected.
+20:09:54 INFO  : Boot mode is read from the target.
+20:09:54 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:09:54 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+20:09:55 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+20:09:55 INFO  : 'set bp_9_55_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+20:09:56 INFO  : 'con -block -timeout 60' command is executed.
+20:09:56 INFO  : 'bpremove $bp_9_55_fsbl_bp' command is executed.
+20:09:56 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:09:56 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+20:09:57 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+20:09:57 INFO  : 'configparams force-mem-access 0' command is executed.
+20:09:57 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_9_55_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_9_55_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:09:57 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:09:57 INFO  : 'con' command is executed.
+20:09:57 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+20:09:57 INFO  : Disconnected from the channel tcfchan#4.
+20:12:47 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+20:13:01 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:13:02 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+20:13:02 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+20:13:02 INFO  : 'jtag frequency' command is executed.
+20:13:02 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+20:13:02 INFO  : Context for 'APU' is selected.
+20:13:03 INFO  : System reset is completed.
+20:13:06 INFO  : 'after 3000' command is executed.
+20:13:06 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+20:13:09 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+20:13:09 INFO  : Context for 'APU' is selected.
+20:13:09 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+20:13:09 INFO  : 'configparams force-mem-access 1' command is executed.
+20:13:09 INFO  : Context for 'APU' is selected.
+20:13:09 INFO  : Boot mode is read from the target.
+20:13:09 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:13:09 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+20:13:10 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+20:13:10 INFO  : 'set bp_13_10_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+20:13:11 INFO  : 'con -block -timeout 60' command is executed.
+20:13:11 INFO  : 'bpremove $bp_13_10_fsbl_bp' command is executed.
+20:13:11 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:13:11 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+20:13:12 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+20:13:12 INFO  : 'configparams force-mem-access 0' command is executed.
+20:13:12 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_13_10_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_13_10_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:13:12 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:13:12 INFO  : 'con' command is executed.
+20:13:12 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+20:13:12 INFO  : Disconnected from the channel tcfchan#5.
+20:14:09 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:14:09 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+20:14:10 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+20:14:10 INFO  : 'jtag frequency' command is executed.
+20:14:10 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+20:14:10 INFO  : Context for 'APU' is selected.
+20:14:11 INFO  : System reset is completed.
+20:14:14 INFO  : 'after 3000' command is executed.
+20:14:14 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+20:14:17 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+20:14:17 INFO  : Context for 'APU' is selected.
+20:14:23 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+20:14:23 INFO  : 'configparams force-mem-access 1' command is executed.
+20:14:23 INFO  : Context for 'APU' is selected.
+20:14:23 INFO  : Boot mode is read from the target.
+20:14:23 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:14:23 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+20:14:24 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+20:14:24 INFO  : 'set bp_14_24_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+20:14:25 INFO  : 'con -block -timeout 60' command is executed.
+20:14:25 INFO  : 'bpremove $bp_14_24_fsbl_bp' command is executed.
+20:14:25 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:14:25 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+20:14:25 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+20:14:25 INFO  : 'configparams force-mem-access 0' command is executed.
+20:14:25 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_14_24_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_14_24_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:14:25 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:14:25 INFO  : 'con' command is executed.
+20:14:25 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+20:14:25 INFO  : Disconnected from the channel tcfchan#6.
+20:15:34 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+20:15:47 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:15:47 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+20:15:47 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+20:15:47 INFO  : 'jtag frequency' command is executed.
+20:15:47 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+20:15:47 INFO  : Context for 'APU' is selected.
+20:15:48 INFO  : System reset is completed.
+20:15:51 INFO  : 'after 3000' command is executed.
+20:15:52 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+20:15:55 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+20:15:55 INFO  : Context for 'APU' is selected.
+20:15:55 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+20:15:55 INFO  : 'configparams force-mem-access 1' command is executed.
+20:15:55 INFO  : Context for 'APU' is selected.
+20:15:55 INFO  : Boot mode is read from the target.
+20:15:55 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:15:55 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+20:15:56 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+20:15:56 INFO  : 'set bp_15_56_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+20:15:57 INFO  : 'con -block -timeout 60' command is executed.
+20:15:57 INFO  : 'bpremove $bp_15_56_fsbl_bp' command is executed.
+20:15:57 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:15:57 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+20:15:57 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+20:15:57 INFO  : 'configparams force-mem-access 0' command is executed.
+20:15:57 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_15_56_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_15_56_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:15:57 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:15:57 INFO  : 'con' command is executed.
+20:15:57 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+20:15:57 INFO  : Disconnected from the channel tcfchan#7.
+20:17:35 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+20:17:48 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:17:48 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+20:17:48 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+20:17:48 INFO  : 'jtag frequency' command is executed.
+20:17:48 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+20:17:48 INFO  : Context for 'APU' is selected.
+20:17:49 INFO  : System reset is completed.
+20:17:52 INFO  : 'after 3000' command is executed.
+20:17:53 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+20:17:56 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+20:17:56 INFO  : Context for 'APU' is selected.
+20:17:56 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+20:17:56 INFO  : 'configparams force-mem-access 1' command is executed.
+20:17:56 INFO  : Context for 'APU' is selected.
+20:17:56 INFO  : Boot mode is read from the target.
+20:17:56 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:17:56 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+20:17:57 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+20:17:57 INFO  : 'set bp_17_57_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+20:17:58 INFO  : 'con -block -timeout 60' command is executed.
+20:17:58 INFO  : 'bpremove $bp_17_57_fsbl_bp' command is executed.
+20:17:58 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:17:58 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+20:17:58 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+20:17:58 INFO  : 'configparams force-mem-access 0' command is executed.
+20:17:58 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_17_57_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_17_57_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:17:58 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:17:58 INFO  : 'con' command is executed.
+20:17:58 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+20:17:58 INFO  : Disconnected from the channel tcfchan#8.
+20:18:17 INFO  : Checking for BSP changes to sync application flags for project 'app_maquetafinal'...
+20:18:47 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+20:18:47 INFO  : Processor 'psu_cortexa53_0' will be used for running fsbl 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf'
+20:18:47 INFO  : Jtag cable 'Avnet USB-to-JTAG/UART Pod V1 1234-oj1A' is selected.
+20:18:47 INFO  : 'jtag frequency' command is executed.
+20:18:47 INFO  : Sourcing of 'C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl' is done.
+20:18:47 INFO  : Context for 'APU' is selected.
+20:18:48 INFO  : System reset is completed.
+20:18:51 INFO  : 'after 3000' command is executed.
+20:18:51 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+20:18:55 INFO  : FPGA configured successfully with bitstream "C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit"
+20:18:55 INFO  : Context for 'APU' is selected.
+20:18:55 INFO  : Hardware design information is loaded from 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa'.
+20:18:55 INFO  : 'configparams force-mem-access 1' command is executed.
+20:18:55 INFO  : Context for 'APU' is selected.
+20:18:55 INFO  : Boot mode is read from the target.
+20:18:55 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:18:55 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+20:18:56 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf' is downloaded to processor 'psu_cortexa53_0'.
+20:18:56 INFO  : 'set bp_18_56_fsbl_bp [bpadd -addr &XFsbl_Exit]' command is executed.
+20:18:57 INFO  : 'con -block -timeout 60' command is executed.
+20:18:57 INFO  : 'bpremove $bp_18_56_fsbl_bp' command is executed.
+20:18:57 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:18:57 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+20:18:57 INFO  : The application 'C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf' is downloaded to processor 'psu_cortexa53_0'.
+20:18:57 INFO  : 'configparams force-mem-access 0' command is executed.
+20:18:57 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source C:/Xilinx/Vitis/2019.2/scripts/vitis/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0
+fpga -file C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/_ide/bitstream/system_wrapper_maquetaFinal_v3.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/hw/system_wrapper_maquetaFinal_v3.xsa -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+set mode [expr [mrd -value 0xFF5E0200] & 0xf]
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/boot/fsbl.elf
+set bp_18_56_fsbl_bp [bpadd -addr &XFsbl_Exit]
+con -block -timeout 60
+bpremove $bp_18_56_fsbl_bp
+targets -set -nocase -filter {name =~ "*A53*#0"}
+rst -processor
+dow C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal/Debug/app_maquetafinal.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:18:57 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+20:18:57 INFO  : 'con' command is executed.
+20:18:57 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A53*#0"}
+con
+----------------End of Script----------------
+
+20:18:57 INFO  : Disconnected from the channel tcfchan#9.

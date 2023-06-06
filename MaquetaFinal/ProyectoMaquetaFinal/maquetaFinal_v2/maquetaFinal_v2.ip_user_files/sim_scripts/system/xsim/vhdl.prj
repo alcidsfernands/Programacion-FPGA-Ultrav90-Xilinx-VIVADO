@@ -1,0 +1,42 @@
+vhdl xil_defaultlib  \
+"../../../bd/system/ipshared/574b/hdl/HALL_21_22.vhd" \
+"../../../bd/system/ipshared/574b/hdl/MY_IP_HALL_21_22_v1_0_S00_AXI.vhd" \
+"../../../bd/system/ipshared/574b/hdl/MY_IP_HALL_21_22_v1_0.vhd" \
+"../../../bd/system/ip/system_MY_IP_HALL_21_22_0_0/sim/system_MY_IP_HALL_21_22_0_0.vhd" \
+"../../../bd/system/ipshared/b732/hdl/MY_IP_HC_SR04.vhd" \
+"../../../bd/system/ipshared/b732/hdl/MY_IP_HC_SR04_v1_0_S00_AXI.vhd" \
+"../../../bd/system/ipshared/b732/hdl/MY_IP_HC_SR04_v1_0.vhd" \
+"../../../bd/system/ip/system_MY_IP_HC_SR04_0_0/sim/system_MY_IP_HC_SR04_0_0.vhd" \
+"../../../bd/system/ip/system_rst_ps8_0_100M_0/sim/system_rst_ps8_0_100M_0.vhd" \
+"../../../bd/system/ipshared/15da/hdl/MOTORDC_DIR.vhd" \
+"../../../bd/system/ipshared/15da/hdl/MYIP_MOTORDC_DIR_v1_0_S00_AXI.vhd" \
+"../../../bd/system/ipshared/15da/hdl/MYIP_MOTORDC_DIR_v1_0.vhd" \
+"../../../bd/system/ip/system_MYIP_MOTORDC_DIR_0_0/sim/system_MYIP_MOTORDC_DIR_0_0.vhd" \
+"../../../bd/system/ipshared/4b95/hdl/MY_IP_STEPPER_v1_0_S00_AXI.vhd" \
+"../../../bd/system/ipshared/4b95/hdl/STEPPER.vhd" \
+"../../../bd/system/ipshared/4b95/hdl/MY_IP_STEPPER_v1_0.vhd" \
+"../../../bd/system/ip/system_MY_IP_STEPPER_0_0/sim/system_MY_IP_STEPPER_0_0.vhd" \
+"../../../bd/system/ipshared/5a10/hdl/CONTADOR_21_22.vhd" \
+"../../../bd/system/ipshared/5a10/hdl/MY_IP_CONTADOR_21_22_v1_0_S00_AXI.vhd" \
+"../../../bd/system/ipshared/5a10/hdl/MY_IP_CONTADOR_21_22_v1_0.vhd" \
+"../../../bd/system/ip/system_MY_IP_CONTADOR_21_22_0_1/sim/system_MY_IP_CONTADOR_21_22_0_1.vhd" \
+"../../../bd/system/ipshared/075f/hdl/FILTRO_21_22.vhd" \
+"../../../bd/system/ipshared/075f/hdl/MY_IP_FILTRO_21_22_v1_0_S00_AXI.vhd" \
+"../../../bd/system/ipshared/075f/hdl/MY_IP_FILTRO_21_22_v1_0.vhd" \
+"../../../bd/system/ip/system_MY_IP_FILTRO_21_22_0_0/sim/system_MY_IP_FILTRO_21_22_0_0.vhd" \
+"../../../bd/system/ipshared/6132/hdl/my_ip_temperatura.vhd" \
+"../../../bd/system/ipshared/6132/hdl/my_ip_temperatura_v1_0_S00_AXI.vhd" \
+"../../../bd/system/ipshared/6132/hdl/my_ip_temperatura_v1_0.vhd" \
+"../../../bd/system/ip/system_my_ip_temperatura_0_0/sim/system_my_ip_temperatura_0_0.vhd" \
+"../../../bd/system/ip/system_axi_bram_ctrl_0_0/sim/system_axi_bram_ctrl_0_0.vhd" \
+"../../../bd/system/ip/system_axi_gpio_0_0/sim/system_axi_gpio_0_0.vhd" \
+"../../../bd/system/ipshared/8cd5/hdl/MY_IP_SERVO_v1_0_S00_AXI.vhd" \
+"../../../bd/system/ipshared/8cd5/hdl/my_servo.vhd" \
+"../../../bd/system/ipshared/8cd5/hdl/MY_IP_SERVO_v1_0.vhd" \
+"../../../bd/system/ip/system_MY_IP_SERVO_0_0/sim/system_MY_IP_SERVO_0_0.vhd" \
+"../../../bd/system/ipshared/1ac7/hdl/PID_IP_v1_0_S00_AXI.vhd" \
+"../../../bd/system/ipshared/1ac7/hdl/PID_VHDL.vhd" \
+"../../../bd/system/ipshared/1ac7/hdl/PID_IP_v1_0.vhd" \
+"../../../bd/system/ip/system_PID_IP_0_0/sim/system_PID_IP_0_0.vhd" \
+
+nosort

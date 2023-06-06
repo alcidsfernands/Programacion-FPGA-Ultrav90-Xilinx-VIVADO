@@ -1,0 +1,32 @@
+2021-11-15T20:18:23.324837500255-20:18:23 **** Incremental Build of configuration Debug for project app_maquetafinal ****
+000-make all 
+000-'Building file: ../src/helloworld.c'
+000-'Invoking: ARM v8 gcc compiler'
+000-aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -IC:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/standalone_domain/bspinclude/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+000-../src/helloworld.c: In function 'main':
+000/app_maquetafinal/src/helloworld.c110-1-1implicit declaration of function 'sleep'; did you mean 'strsep'? [-Wimplicit-function-declaration]1-../src/helloworld.c:110:6: warning: implicit declaration of function 'sleep'; did you mean 'strsep'? [-Wimplicit-function-declaration]
+000-      sleep(1);
+000-      ^~~~~
+000-      strsep
+000/app_maquetafinal/src/helloworld.c83-1-1unused variable 'temp' [-Wunused-variable]1-../src/helloworld.c:83:9: warning: unused variable 'temp' [-Wunused-variable]
+000-     int temp=0,dist,giro;
+000-         ^~~~
+000/app_maquetafinal/src/helloworld.c82-1-1unused variable 'dist_mm' [-Wunused-variable]1-../src/helloworld.c:82:11: warning: unused variable 'dist_mm' [-Wunused-variable]
+000-     float dist_mm;
+000-           ^~~~~~~
+000-'Finished building: ../src/helloworld.c'
+000-' '
+000-'Building target: app_maquetafinal.elf'
+000-'Invoking: ARM v8 gcc linker'
+000-aarch64-none-elf-gcc -Wl,-T -Wl,../src/lscript.ld -LC:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/standalone_domain/bsplib/lib -o "app_maquetafinal.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+000-'Finished building target: app_maquetafinal.elf'
+000-' '
+000-'Invoking: ARM v8 Print Size'
+000-aarch64-none-elf-size app_maquetafinal.elf  |tee "app_maquetafinal.elf.size"
+000-   text	   data	    bss	    dec	    hex	filename
+000-  75304	   4552	  20744	 100600	  188f8	app_maquetafinal.elf
+000-'Finished building: app_maquetafinal.elf.size'
+000-' '
+00255-
+20:18:23 Build Finished (took 597ms)
+

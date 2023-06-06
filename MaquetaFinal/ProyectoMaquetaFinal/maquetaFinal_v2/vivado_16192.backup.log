@@ -1,0 +1,625 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Mon Nov 15 18:08:03 2021
+# Process ID: 16192
+# Current directory: C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent1672 C:\Users\jon.montero\Downloads\MaquetaFinal\ProyectoMaquetaFinal\maquetaFinal_v2\maquetaFinal_v2.xpr
+# Log file: C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/vivado.log
+# Journal file: C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.xpr
+INFO: [Project 1-313] Project file moved from 'C:/Users/jon.montero/Downloads/ProyectoMaquetaFinal/maquetaFinal_v2' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'.
+open_project: Time (s): cpu = 00:00:22 ; elapsed = 00:00:12 . Memory (MB): peak = 1043.895 ; gain = 356.781
+update_compile_order -fileset sources_1
+open_bd_design {C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd}
+Adding component instance block -- xilinx.com:ip:zynq_ultra_ps_e:3.3 - zynq_ultra_ps_e_0
+Adding component instance block -- opendeusto.es:user:MY_IP_HALL_21_22:1.0 - MY_IP_HALL_21_22_0
+Adding component instance block -- xilinx.com:user:MY_IP_HC_SR04:1.0 - MY_IP_HC_SR04_0
+Adding component instance block -- xilinx.com:ip:axi_interconnect:2.1 - ps8_0_axi_periph
+Adding component instance block -- xilinx.com:ip:axi_crossbar:2.1 - xbar
+Adding component instance block -- xilinx.com:ip:axi_dwidth_converter:2.1 - auto_ds
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_dwidth_converter:2.1 - auto_ds
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:proc_sys_reset:5.0 - rst_ps8_0_100M
+Adding component instance block -- opendeusto.es:user:MYIP_MOTORDC_DIR:1.0 - MYIP_MOTORDC_DIR_0
+Adding component instance block -- opendeusto.es:user:MY_IP_STEPPER:1.0 - MY_IP_STEPPER_0
+Adding component instance block -- opendeusto.es:user:MY_IP_CONTADOR_21_22:1.0 - MY_IP_CONTADOR_21_22_0
+Adding component instance block -- opendeusto.es:user:MY_IP_FILTRO_21_22:1.0 - MY_IP_FILTRO_21_22_0
+Adding component instance block -- xilinx.com:user:my_ip_temperatura:1.0 - my_ip_temperatura_0
+Successfully read diagram <system> from BD file <C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd>
+open_bd_design: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1170.551 ; gain = 23.348
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.1 axi_bram_ctrl_0
+INFO: [xilinx.com:ip:axi_bram_ctrl:4.1-2] system_axi_bram_ctrl_0_0: In IP Integrator, please note that memory depth value gets calculated based on the Data Width of the IP and Address range selected in the Address Editor.Incase a validation error occured on the range of this parameter, please check if the selected Data width and the Address Range are valid. For valid Data width and memory depth values, please refer to the AXI BRAM Controller Product Guide.
+INFO: [xilinx.com:ip:axi_bram_ctrl:4.1-1] system_axi_bram_ctrl_0_0: In IP Integrator, The Maximum address range supported is 2G. Selecting the address range more than 2G in the address editor may resets the value of Memory depth to default value (1024). please refer to the AXI BRAM Controller Product Guide.
+endgroup
+startgroup
+apply_bd_automation -rule xilinx.com:bd_rule:bram_cntlr -config {BRAM "Auto" }  [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTA]
+apply_bd_automation -rule xilinx.com:bd_rule:bram_cntlr -config {BRAM "Auto" }  [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTB]
+apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config { Clk_master {/zynq_ultra_ps_e_0/pl_clk0 (100 MHz)} Clk_slave {Auto} Clk_xbar {/zynq_ultra_ps_e_0/pl_clk0 (100 MHz)} Master {/zynq_ultra_ps_e_0/M_AXI_HPM0_FPD} Slave {/axi_bram_ctrl_0/S_AXI} ddr_seg {Auto} intc_ip {/ps8_0_axi_periph} master_apm {0}}  [get_bd_intf_pins axi_bram_ctrl_0/S_AXI]
+Slave segment </axi_bram_ctrl_0/S_AXI/Mem0> is being mapped into address space </zynq_ultra_ps_e_0/Data> at <0xA007_0000 [ 8K ]>
+endgroup
+WARNING: [IP_Flow 19-465] param 'READ_LATENCY' already exists. Ignoring.
+WARNING: [IP_Flow 19-465] param 'RD_CMD_OPTIMIZATION' already exists. Ignoring.
+startgroup
+set_property -dict [list CONFIG.SINGLE_PORT_BRAM {1}] [get_bd_cells axi_bram_ctrl_0]
+delete_bd_objs [get_bd_intf_nets axi_bram_ctrl_0_BRAM_PORTB]
+endgroup
+regenerate_bd_layout
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_0
+endgroup
+INFO: [Ipptcl 7-1463] No Compatible Board Interface found. Board Tab not created in customize GUI
+set_property -dict [list CONFIG.C_GPIO_WIDTH {4} CONFIG.C_ALL_INPUTS {1} CONFIG.C_INTERRUPT_PRESENT {1}] [get_bd_cells axi_gpio_0]
+startgroup
+apply_bd_automation -rule xilinx.com:bd_rule:board -config { Manual_Source {Auto}}  [get_bd_intf_pins axi_gpio_0/GPIO]
+INFO: [board_rule 100-100] create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 gpio_rtl
+INFO: [board_rule 100-100] connect_bd_intf_net /gpio_rtl /axi_gpio_0/GPIO
+WARNING: [board_rule 100-100] Board automation did not generate location constraint for /axi_gpio_0/GPIO. Users may need to specify the location constraint manually.
+apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config { Clk_master {/zynq_ultra_ps_e_0/pl_clk0 (100 MHz)} Clk_slave {Auto} Clk_xbar {/zynq_ultra_ps_e_0/pl_clk0 (100 MHz)} Master {/zynq_ultra_ps_e_0/M_AXI_HPM0_FPD} Slave {/axi_gpio_0/S_AXI} ddr_seg {Auto} intc_ip {/ps8_0_axi_periph} master_apm {0}}  [get_bd_intf_pins axi_gpio_0/S_AXI]
+Slave segment </axi_gpio_0/S_AXI/Reg> is being mapped into address space </zynq_ultra_ps_e_0/Data> at <0xA008_0000 [ 64K ]>
+endgroup
+regenerate_bd_layout
+set_property  ip_repo_paths  {c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo/MY_IP_SERVO_1.0} [current_project]
+update_ip_catalog
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo'.
+WARNING: [IP_Flow 19-3685] Ignored loading user repository 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo/MY_IP_SERVO_1.0'. The path is contained within another repository.
+open_bd_design {C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd}
+open_bd_design {C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd}
+update_ip_catalog -rebuild
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo'.
+WARNING: [IP_Flow 19-3685] Ignored loading user repository 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo/MY_IP_SERVO_1.0'. The path is contained within another repository.
+create_bd_cell -type ip -vlnv opendeusto.es:user:MY_IP_SERVO:1.0 MY_IP_SERVO_0
+apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config { Clk_master {/zynq_ultra_ps_e_0/pl_clk0 (100 MHz)} Clk_slave {Auto} Clk_xbar {/zynq_ultra_ps_e_0/pl_clk0 (100 MHz)} Master {/zynq_ultra_ps_e_0/M_AXI_HPM0_FPD} Slave {/MY_IP_SERVO_0/S00_AXI} ddr_seg {Auto} intc_ip {/ps8_0_axi_periph} master_apm {0}}  [get_bd_intf_pins MY_IP_SERVO_0/S00_AXI]
+Slave segment </MY_IP_SERVO_0/S00_AXI/S00_AXI_reg> is being mapped into address space </zynq_ultra_ps_e_0/Data> at <0xA009_0000 [ 64K ]>
+regenerate_bd_layout
+startgroup
+make_bd_pins_external  [get_bd_pins MY_IP_SERVO_0/servo_pwm]
+endgroup
+generate_target all [get_files  C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd]
+WARNING: [BD 41-2180] Resetting the memory initialization file of </axi_bram_ctrl_0_bram> to default.
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m00_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M00_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m00_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M00_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m01_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M01_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m01_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M01_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m02_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M02_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m02_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M02_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m03_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M03_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m03_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M03_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m04_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M04_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m04_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M04_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m05_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M05_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m05_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M05_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m06_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M06_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m06_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M06_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m07_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M07_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m07_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M07_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m08_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M08_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m08_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M08_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m09_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M09_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m09_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M09_AXI(16)
+Wrote  : <C:\Users\jon.montero\Downloads\MaquetaFinal\ProyectoMaquetaFinal\maquetaFinal_v2\maquetaFinal_v2.srcs\sources_1\bd\system\system.bd> 
+Wrote  : <C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ui/bd_c954508f.ui> 
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_awid'(17) to net 's00_couplers_to_xbar_AWID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_arid'(17) to net 's00_couplers_to_xbar_ARID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_awid'(17) to net 's01_couplers_to_xbar_AWID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_arid'(17) to net 's01_couplers_to_xbar_ARID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp0_bid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_BID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp0_rid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_RID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp1_bid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM1_FPD_BID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp1_rid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM1_FPD_RID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/axi_bram_ctrl_0_bram/addra'(32) to net 'axi_bram_ctrl_0_BRAM_PORTA_ADDR'(13) - Only lower order bits will be connected.
+VHDL Output written to : C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/synth/system.v
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_awid'(17) to net 's00_couplers_to_xbar_AWID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_arid'(17) to net 's00_couplers_to_xbar_ARID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_awid'(17) to net 's01_couplers_to_xbar_AWID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_arid'(17) to net 's01_couplers_to_xbar_ARID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp0_bid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_BID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp0_rid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_RID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp1_bid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM1_FPD_BID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp1_rid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM1_FPD_RID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/axi_bram_ctrl_0_bram/addra'(32) to net 'axi_bram_ctrl_0_BRAM_PORTA_ADDR'(13) - Only lower order bits will be connected.
+VHDL Output written to : C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/sim/system.v
+VHDL Output written to : C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/hdl/system_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block zynq_ultra_ps_e_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block MY_IP_HALL_21_22_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block MY_IP_HC_SR04_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block rst_ps8_0_100M .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block MYIP_MOTORDC_DIR_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block MY_IP_STEPPER_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block MY_IP_CONTADOR_21_22_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block MY_IP_FILTRO_21_22_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block my_ip_temperatura_0 .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_0/system_auto_ds_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m00_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m00_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_1/system_auto_ds_1_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m01_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_1/system_auto_pc_1_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m01_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_2/system_auto_ds_2_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m02_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_2/system_auto_pc_2_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m02_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_3/system_auto_ds_3_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m03_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_3/system_auto_pc_3_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m03_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_4/system_auto_ds_4_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m04_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_4/system_auto_pc_4_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m04_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_5/system_auto_ds_5_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m05_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_5/system_auto_pc_5_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m05_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_6/system_auto_ds_6_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m06_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_6/system_auto_pc_6_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m06_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_7/system_auto_ds_7_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m07_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_8/system_auto_ds_8_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m08_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_7/system_auto_pc_7_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m08_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_9/system_auto_ds_9_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m09_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_8/system_auto_pc_8_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m09_couplers/auto_pc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_bram_ctrl_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_bram_ctrl_0_bram .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_gpio_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block MY_IP_SERVO_0 .
+Exporting to file C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/hw_handoff/system.hwh
+Generated Block Design Tcl file C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/hw_handoff/system_bd.tcl
+Generated Hardware Definition File C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/synth/system.hwdef
+generate_target: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1674.363 ; gain = 0.000
+export_ip_user_files -of_objects [get_files C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd] -no_script -sync -force -quiet
+export_simulation -of_objects [get_files C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd] -directory C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.ip_user_files -ipstatic_source_dir C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/modelsim} {questa=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/questa} {riviera=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/riviera} {activehdl=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+make_wrapper -files [get_files C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd] -top
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+[Mon Nov 15 18:24:42 2021] Launched synth_1...
+Run output will be captured here: C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.runs/synth_1/runme.log
+open_run synth_1 -name synth_1
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xczu3eg-sbva484-1-e
+INFO: [Device 21-403] Loading part xczu3eg-sbva484-1-e
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.949 . Memory (MB): peak = 2507.352 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 369 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2019.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_zynq_ultra_ps_e_0_0/system_zynq_ultra_ps_e_0_0.xdc] for cell 'system_i/zynq_ultra_ps_e_0/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_zynq_ultra_ps_e_0_0/system_zynq_ultra_ps_e_0_0.xdc] for cell 'system_i/zynq_ultra_ps_e_0/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_rst_ps8_0_100M_0/system_rst_ps8_0_100M_0_board.xdc] for cell 'system_i/rst_ps8_0_100M/U0'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_rst_ps8_0_100M_0/system_rst_ps8_0_100M_0_board.xdc] for cell 'system_i/rst_ps8_0_100M/U0'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_rst_ps8_0_100M_0/system_rst_ps8_0_100M_0.xdc] for cell 'system_i/rst_ps8_0_100M/U0'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_rst_ps8_0_100M_0/system_rst_ps8_0_100M_0.xdc] for cell 'system_i/rst_ps8_0_100M/U0'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_axi_gpio_0_0/system_axi_gpio_0_0_board.xdc] for cell 'system_i/axi_gpio_0/U0'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_axi_gpio_0_0/system_axi_gpio_0_0_board.xdc] for cell 'system_i/axi_gpio_0/U0'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_axi_gpio_0_0/system_axi_gpio_0_0.xdc] for cell 'system_i/axi_gpio_0/U0'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_axi_gpio_0_0/system_axi_gpio_0_0.xdc] for cell 'system_i/axi_gpio_0/U0'
+Parsing XDC File [C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/constrs_1/new/constraints.xdc]
+Finished Parsing XDC File [C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/constrs_1/new/constraints.xdc]
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_0/system_auto_ds_0_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_0/system_auto_ds_0_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_1/system_auto_ds_1_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_1/system_auto_ds_1_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_2/system_auto_ds_2_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_2/system_auto_ds_2_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_3/system_auto_ds_3_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_3/system_auto_ds_3_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_4/system_auto_ds_4_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_4/system_auto_ds_4_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_5/system_auto_ds_5_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_5/system_auto_ds_5_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_6/system_auto_ds_6_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_6/system_auto_ds_6_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_7/system_auto_ds_7_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_7/system_auto_ds_7_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_8/system_auto_ds_8_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_8/system_auto_ds_8_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_9/system_auto_ds_9_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_9/system_auto_ds_9_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 2507.352 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 83 instances were transformed.
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 4 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 8 instances
+  IOBUF => IOBUF (IBUFCTRL, INBUF, OBUFT): 1 instance 
+  RAM32M16 => RAM32M16 (RAMD32(x14), RAMS32(x2)): 70 instances
+
+open_run: Time (s): cpu = 00:00:28 ; elapsed = 00:00:21 . Memory (MB): peak = 2709.410 ; gain = 1035.047
+startgroup
+set_property package_pin "" [get_ports [list  sensor_hall_azul_0]]
+place_ports pwm_dc_motor_negro_0 A6
+endgroup
+startgroup
+set_property package_pin "" [get_ports [list  sensor_hall_verde_0]]
+place_ports pwm_dc_motor_rojo_0 A7
+endgroup
+undo
+INFO: [Common 17-17] undo 'endgroup'
+INFO: [Common 17-17] undo 'place_ports pwm_dc_motor_rojo_0 A7'
+INFO: [Common 17-17] undo 'set_property package_pin "" [get_ports [list  sensor_hall_verde_0]]'
+INFO: [Common 17-17] undo 'startgroup'
+undo
+INFO: [Common 17-17] undo 'endgroup'
+INFO: [Common 17-17] undo 'place_ports pwm_dc_motor_negro_0 A6'
+INFO: [Common 17-17] undo 'set_property package_pin "" [get_ports [list  sensor_hall_azul_0]]'
+INFO: [Common 17-17] undo 'startgroup'
+place_ports servo_pwm_0 C5
+set_property IOSTANDARD LVCMOS18 [get_ports [list servo_pwm_0]]
+place_ports {gpio_rtl_tri_i[3]} E6
+place_ports {gpio_rtl_tri_i[2]} E5
+set_property package_pin "" [get_ports [list  {gpio_rtl_tri_i[1]}]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list {gpio_rtl_tri_i[3]}]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list {gpio_rtl_tri_i[2]}]]
+save_constraints
+open_bd_design {C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd}
+INFO: [Ipptcl 7-1463] No Compatible Board Interface found. Board Tab not created in customize GUI
+startgroup
+set_property -dict [list CONFIG.C_GPIO_WIDTH {2}] [get_bd_cells axi_gpio_0]
+endgroup
+generate_target all [get_files  C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd]
+WARNING: [BD 41-2180] Resetting the memory initialization file of </axi_bram_ctrl_0_bram> to default.
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m00_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M00_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m00_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M00_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m01_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M01_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m01_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M01_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m02_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M02_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m02_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M02_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m03_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M03_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m03_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M03_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m04_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M04_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m04_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M04_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m05_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M05_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m05_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M05_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m06_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M06_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m06_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M06_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m07_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M07_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m07_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M07_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m08_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M08_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m08_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M08_AXI(16)
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /ps8_0_axi_periph/m09_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M09_AXI(16)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /ps8_0_axi_periph/m09_couplers/auto_ds/S_AXI(0) and /ps8_0_axi_periph/xbar/M09_AXI(16)
+Wrote  : <C:\Users\jon.montero\Downloads\MaquetaFinal\ProyectoMaquetaFinal\maquetaFinal_v2\maquetaFinal_v2.srcs\sources_1\bd\system\system.bd> 
+Wrote  : <C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ui/bd_c954508f.ui> 
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_awid'(17) to net 's00_couplers_to_xbar_AWID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_arid'(17) to net 's00_couplers_to_xbar_ARID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_awid'(17) to net 's01_couplers_to_xbar_AWID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_arid'(17) to net 's01_couplers_to_xbar_ARID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp0_bid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_BID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp0_rid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_RID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp1_bid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM1_FPD_BID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp1_rid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM1_FPD_RID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/axi_bram_ctrl_0_bram/addra'(32) to net 'axi_bram_ctrl_0_BRAM_PORTA_ADDR'(13) - Only lower order bits will be connected.
+VHDL Output written to : C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/synth/system.v
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_awid'(17) to net 's00_couplers_to_xbar_AWID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_arid'(17) to net 's00_couplers_to_xbar_ARID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_awid'(17) to net 's01_couplers_to_xbar_AWID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/ps8_0_axi_periph/xbar/s_axi_arid'(17) to net 's01_couplers_to_xbar_ARID'(16) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp0_bid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_BID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp0_rid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_RID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp1_bid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM1_FPD_BID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/zynq_ultra_ps_e_0/maxigp1_rid'(16) to net 'zynq_ultra_ps_e_0_M_AXI_HPM1_FPD_RID'(17) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/axi_bram_ctrl_0_bram/addra'(32) to net 'axi_bram_ctrl_0_BRAM_PORTA_ADDR'(13) - Only lower order bits will be connected.
+VHDL Output written to : C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/sim/system.v
+VHDL Output written to : C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/hdl/system_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block zynq_ultra_ps_e_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block MY_IP_HALL_21_22_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block MY_IP_HC_SR04_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block rst_ps8_0_100M .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block MYIP_MOTORDC_DIR_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block MY_IP_STEPPER_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block MY_IP_CONTADOR_21_22_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block MY_IP_FILTRO_21_22_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block my_ip_temperatura_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_bram_ctrl_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_bram_ctrl_0_bram .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_gpio_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block MY_IP_SERVO_0 .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_0/system_auto_ds_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m00_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m00_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_1/system_auto_ds_1_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m01_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_1/system_auto_pc_1_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m01_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_2/system_auto_ds_2_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m02_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_2/system_auto_pc_2_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m02_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_3/system_auto_ds_3_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m03_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_3/system_auto_pc_3_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m03_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_4/system_auto_ds_4_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m04_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_4/system_auto_pc_4_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m04_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_5/system_auto_ds_5_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m05_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_5/system_auto_pc_5_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m05_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_6/system_auto_ds_6_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m06_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_6/system_auto_pc_6_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m06_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_7/system_auto_ds_7_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m07_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_8/system_auto_ds_8_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m08_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_7/system_auto_pc_7_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m08_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_9/system_auto_ds_9_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m09_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_pc_8/system_auto_pc_8_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps8_0_axi_periph/m09_couplers/auto_pc .
+Exporting to file C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/hw_handoff/system.hwh
+Generated Block Design Tcl file C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/hw_handoff/system_bd.tcl
+Generated Hardware Definition File C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/synth/system.hwdef
+generate_target: Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 4958.043 ; gain = 0.000
+export_ip_user_files -of_objects [get_files C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd] -no_script -sync -force -quiet
+export_simulation -of_objects [get_files C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd] -directory C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.ip_user_files -ipstatic_source_dir C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/modelsim} {questa=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/questa} {riviera=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/riviera} {activehdl=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+make_wrapper -files [get_files C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd] -top
+close_design
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Mon Nov 15 18:47:00 2021] Launched synth_1...
+Run output will be captured here: C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.runs/synth_1/runme.log
+[Mon Nov 15 18:47:00 2021] Launched impl_1...
+Run output will be captured here: C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.runs/impl_1/runme.log
+open_run synth_1 -name synth_1
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xczu3eg-sbva484-1-e
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.959 . Memory (MB): peak = 5629.465 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 367 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2019.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_zynq_ultra_ps_e_0_0/system_zynq_ultra_ps_e_0_0.xdc] for cell 'system_i/zynq_ultra_ps_e_0/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_zynq_ultra_ps_e_0_0/system_zynq_ultra_ps_e_0_0.xdc] for cell 'system_i/zynq_ultra_ps_e_0/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_rst_ps8_0_100M_0/system_rst_ps8_0_100M_0_board.xdc] for cell 'system_i/rst_ps8_0_100M/U0'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_rst_ps8_0_100M_0/system_rst_ps8_0_100M_0_board.xdc] for cell 'system_i/rst_ps8_0_100M/U0'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_rst_ps8_0_100M_0/system_rst_ps8_0_100M_0.xdc] for cell 'system_i/rst_ps8_0_100M/U0'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_rst_ps8_0_100M_0/system_rst_ps8_0_100M_0.xdc] for cell 'system_i/rst_ps8_0_100M/U0'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_axi_gpio_0_0/system_axi_gpio_0_0_board.xdc] for cell 'system_i/axi_gpio_0/U0'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_axi_gpio_0_0/system_axi_gpio_0_0_board.xdc] for cell 'system_i/axi_gpio_0/U0'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_axi_gpio_0_0/system_axi_gpio_0_0.xdc] for cell 'system_i/axi_gpio_0/U0'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_axi_gpio_0_0/system_axi_gpio_0_0.xdc] for cell 'system_i/axi_gpio_0/U0'
+Parsing XDC File [C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/constrs_1/new/constraints.xdc]
+WARNING: [Vivado 12-584] No ports matched 'gpio_rtl_tri_i[3]'. [C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/constrs_1/new/constraints.xdc:28]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/constrs_1/new/constraints.xdc:28]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_rtl_tri_i[2]'. [C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/constrs_1/new/constraints.xdc:29]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/constrs_1/new/constraints.xdc:29]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_rtl_tri_i[3]'. [C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/constrs_1/new/constraints.xdc:30]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/constrs_1/new/constraints.xdc:30]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_rtl_tri_i[2]'. [C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/constrs_1/new/constraints.xdc:31]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/constrs_1/new/constraints.xdc:31]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/constrs_1/new/constraints.xdc]
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_0/system_auto_ds_0_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_0/system_auto_ds_0_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_1/system_auto_ds_1_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_1/system_auto_ds_1_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_2/system_auto_ds_2_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_2/system_auto_ds_2_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_3/system_auto_ds_3_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_3/system_auto_ds_3_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_4/system_auto_ds_4_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_4/system_auto_ds_4_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_5/system_auto_ds_5_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_5/system_auto_ds_5_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_6/system_auto_ds_6_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_6/system_auto_ds_6_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_7/system_auto_ds_7_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_7/system_auto_ds_7_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_8/system_auto_ds_8_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_8/system_auto_ds_8_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst'
+Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_9/system_auto_ds_9_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst'
+Finished Parsing XDC File [c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/ip/system_auto_ds_9/system_auto_ds_9_clocks.xdc] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m04_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m03_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m02_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m01_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m08_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m00_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m05_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m09_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m06_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_READ.read_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [C:/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/ps8_0_axi_periph/m07_couplers/auto_ds/inst/gen_downsizer.gen_simple_downsizer.axi_downsizer_inst/USE_WRITE.write_addr_inst/cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 5648.680 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 81 instances were transformed.
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 4 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 6 instances
+  IOBUF => IOBUF (IBUFCTRL, INBUF, OBUFT): 1 instance 
+  RAM32M16 => RAM32M16 (RAMD32(x14), RAMS32(x2)): 70 instances
+
+open_run: Time (s): cpu = 00:00:15 ; elapsed = 00:00:12 . Memory (MB): peak = 5648.680 ; gain = 44.863
+set_property IOSTANDARD LVCMOS18 [get_ports [list {gpio_rtl_tri_i[1]} {gpio_rtl_tri_i[0]}]]
+place_ports {gpio_rtl_tri_i[1]} E6
+place_ports {gpio_rtl_tri_i[0]} E5
+save_constraints
+close_design
+make_wrapper -files [get_files C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd] -top
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+[Mon Nov 15 19:00:05 2021] Launched synth_1...
+Run output will be captured here: C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.runs/synth_1/runme.log
+INFO: [Vivado 12-8231] Launching Vitis
+INFO: [Vivado 12-417] Running vitis
+INFO: [Vivado 12-8232] Vitis launch initiated. Please check console for any further messages.
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Mon Nov 15 19:05:05 2021] Launched impl_1...
+Run output will be captured here: C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.runs/impl_1/runme.log
+write_hw_platform -fixed -force  -include_bit -file C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/system_wrapper_V5.xsa
+INFO: [Vivado 12-4895] Creating Hardware Platform: C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/system_wrapper_V5.xsa ...
+INFO: [Hsi 55-2053] elapsed time for repository (C:/Xilinx/Vivado/2019.2/data\embeddedsw) loading 0 seconds
+INFO: [Vivado 12-4896] Successfully created Hardware Platform: C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/system_wrapper_V5.xsa
+write_hw_platform: Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 5648.680 ; gain = 0.000
+ipx::edit_ip_in_project -upgrade true -name MYIP_MOTORDC_DIR_v1_0_project -directory C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.tmp/MYIP_MOTORDC_DIR_v1_0_project c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo/MYIP_MOTORDC_DIR_1.0/component.xml
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'c:/users/jon.montero/downloads/maquetafinal/proyectomaquetafinal/maquetafinal_v2/maquetafinal_v2.tmp/myip_motordc_dir_v1_0_project'
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo'.
+WARNING: [IP_Flow 19-3685] Ignored loading user repository 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo/MY_IP_SERVO_1.0'. The path is contained within another repository.
+INFO: [IP_Flow 19-795] Syncing license key meta-data
+update_compile_order -fileset sources_1
+close_project
+INFO: [Vivado 12-8231] Launching Vitis
+INFO: [Vivado 12-417] Running vitis
+INFO: [Vivado 12-8232] Vitis launch initiated. Please check console for any further messages.
+INFO: [Vivado 12-8231] Launching Vitis
+INFO: [Vivado 12-417] Running vitis
+INFO: [Vivado 12-8232] Vitis launch initiated. Please check console for any further messages.
+ipx::edit_ip_in_project -upgrade true -name MY_IP_STEPPER_v1_0_project -directory C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.tmp/MY_IP_STEPPER_v1_0_project c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo/MY_IP_STEPPER_1.0/component.xml
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'c:/users/jon.montero/downloads/maquetafinal/proyectomaquetafinal/maquetafinal_v2/maquetafinal_v2.tmp/my_ip_stepper_v1_0_project'
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo'.
+WARNING: [IP_Flow 19-3685] Ignored loading user repository 'c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo/MY_IP_SERVO_1.0'. The path is contained within another repository.
+INFO: [IP_Flow 19-795] Syncing license key meta-data
+update_compile_order -fileset sources_1
+close_project
+exit
+INFO: [Common 17-206] Exiting Vivado at Mon Nov 15 20:21:35 2021...

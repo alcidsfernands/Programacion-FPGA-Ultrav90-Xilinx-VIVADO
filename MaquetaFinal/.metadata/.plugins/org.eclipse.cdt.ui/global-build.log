@@ -1,0 +1,31 @@
+Nothing to build in platform 'plat_maquetafinal'
+
+20:18:23 **** Incremental Build of configuration Debug for project app_maquetafinal ****
+make all 
+'Building file: ../src/helloworld.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -IC:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/standalone_domain/bspinclude/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:110:6: warning: implicit declaration of function 'sleep'; did you mean 'strsep'? [-Wimplicit-function-declaration]
+      sleep(1);
+      ^~~~~
+      strsep
+../src/helloworld.c:83:9: warning: unused variable 'temp' [-Wunused-variable]
+     int temp=0,dist,giro;
+         ^~~~
+../src/helloworld.c:82:11: warning: unused variable 'dist_mm' [-Wunused-variable]
+     float dist_mm;
+           ^~~~~~~
+'Finished building: ../src/helloworld.c'
+' '
+'Building target: app_maquetafinal.elf'
+'Invoking: ARM v8 gcc linker'
+aarch64-none-elf-gcc -Wl,-T -Wl,../src/lscript.ld -LC:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/sw/plat_maquetafinal/standalone_domain/bsplib/lib -o "app_maquetafinal.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: app_maquetafinal.elf'
+' '
+'Invoking: ARM v8 Print Size'
+aarch64-none-elf-size app_maquetafinal.elf  |tee "app_maquetafinal.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  75304	   4552	  20744	 100600	  188f8	app_maquetafinal.elf
+'Finished building: app_maquetafinal.elf.size'
+' '

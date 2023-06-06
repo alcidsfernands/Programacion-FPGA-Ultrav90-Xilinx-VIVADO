@@ -1,0 +1,105 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Mon Nov 15 18:08:03 2021
+# Process ID: 16192
+# Current directory: C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent1672 C:\Users\jon.montero\Downloads\MaquetaFinal\ProyectoMaquetaFinal\maquetaFinal_v2\maquetaFinal_v2.xpr
+# Log file: C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/vivado.log
+# Journal file: C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.xpr
+update_compile_order -fileset sources_1
+open_bd_design {C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd}
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.1 axi_bram_ctrl_0
+endgroup
+startgroup
+apply_bd_automation -rule xilinx.com:bd_rule:bram_cntlr -config {BRAM "Auto" }  [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTA]
+apply_bd_automation -rule xilinx.com:bd_rule:bram_cntlr -config {BRAM "Auto" }  [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTB]
+apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config { Clk_master {/zynq_ultra_ps_e_0/pl_clk0 (100 MHz)} Clk_slave {Auto} Clk_xbar {/zynq_ultra_ps_e_0/pl_clk0 (100 MHz)} Master {/zynq_ultra_ps_e_0/M_AXI_HPM0_FPD} Slave {/axi_bram_ctrl_0/S_AXI} ddr_seg {Auto} intc_ip {/ps8_0_axi_periph} master_apm {0}}  [get_bd_intf_pins axi_bram_ctrl_0/S_AXI]
+endgroup
+startgroup
+set_property -dict [list CONFIG.SINGLE_PORT_BRAM {1}] [get_bd_cells axi_bram_ctrl_0]
+delete_bd_objs [get_bd_intf_nets axi_bram_ctrl_0_BRAM_PORTB]
+endgroup
+regenerate_bd_layout
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_0
+endgroup
+set_property -dict [list CONFIG.C_GPIO_WIDTH {4} CONFIG.C_ALL_INPUTS {1} CONFIG.C_INTERRUPT_PRESENT {1}] [get_bd_cells axi_gpio_0]
+startgroup
+apply_bd_automation -rule xilinx.com:bd_rule:board -config { Manual_Source {Auto}}  [get_bd_intf_pins axi_gpio_0/GPIO]
+apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config { Clk_master {/zynq_ultra_ps_e_0/pl_clk0 (100 MHz)} Clk_slave {Auto} Clk_xbar {/zynq_ultra_ps_e_0/pl_clk0 (100 MHz)} Master {/zynq_ultra_ps_e_0/M_AXI_HPM0_FPD} Slave {/axi_gpio_0/S_AXI} ddr_seg {Auto} intc_ip {/ps8_0_axi_periph} master_apm {0}}  [get_bd_intf_pins axi_gpio_0/S_AXI]
+endgroup
+regenerate_bd_layout
+set_property  ip_repo_paths  {c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo/MY_IP_SERVO_1.0} [current_project]
+update_ip_catalog
+open_bd_design {C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd}
+open_bd_design {C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd}
+update_ip_catalog -rebuild
+create_bd_cell -type ip -vlnv opendeusto.es:user:MY_IP_SERVO:1.0 MY_IP_SERVO_0
+apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config { Clk_master {/zynq_ultra_ps_e_0/pl_clk0 (100 MHz)} Clk_slave {Auto} Clk_xbar {/zynq_ultra_ps_e_0/pl_clk0 (100 MHz)} Master {/zynq_ultra_ps_e_0/M_AXI_HPM0_FPD} Slave {/MY_IP_SERVO_0/S00_AXI} ddr_seg {Auto} intc_ip {/ps8_0_axi_periph} master_apm {0}}  [get_bd_intf_pins MY_IP_SERVO_0/S00_AXI]
+regenerate_bd_layout
+startgroup
+make_bd_pins_external  [get_bd_pins MY_IP_SERVO_0/servo_pwm]
+endgroup
+generate_target all [get_files  C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd]
+export_ip_user_files -of_objects [get_files C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd] -no_script -sync -force -quiet
+export_simulation -of_objects [get_files C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd] -directory C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.ip_user_files -ipstatic_source_dir C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/modelsim} {questa=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/questa} {riviera=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/riviera} {activehdl=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+make_wrapper -files [get_files C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd] -top
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+startgroup
+set_property package_pin "" [get_ports [list  sensor_hall_azul_0]]
+place_ports pwm_dc_motor_negro_0 A6
+endgroup
+startgroup
+set_property package_pin "" [get_ports [list  sensor_hall_verde_0]]
+place_ports pwm_dc_motor_rojo_0 A7
+endgroup
+undo
+undo
+place_ports servo_pwm_0 C5
+set_property IOSTANDARD LVCMOS18 [get_ports [list servo_pwm_0]]
+place_ports {gpio_rtl_tri_i[3]} E6
+place_ports {gpio_rtl_tri_i[2]} E5
+set_property package_pin "" [get_ports [list  {gpio_rtl_tri_i[1]}]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list {gpio_rtl_tri_i[3]}]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list {gpio_rtl_tri_i[2]}]]
+save_constraints
+open_bd_design {C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd}
+startgroup
+set_property -dict [list CONFIG.C_GPIO_WIDTH {2}] [get_bd_cells axi_gpio_0]
+endgroup
+generate_target all [get_files  C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd]
+export_ip_user_files -of_objects [get_files C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd] -no_script -sync -force -quiet
+export_simulation -of_objects [get_files C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd] -directory C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.ip_user_files -ipstatic_source_dir C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/modelsim} {questa=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/questa} {riviera=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/riviera} {activehdl=C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+make_wrapper -files [get_files C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd] -top
+close_design
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run synth_1 -name synth_1
+set_property IOSTANDARD LVCMOS18 [get_ports [list {gpio_rtl_tri_i[1]} {gpio_rtl_tri_i[0]}]]
+place_ports {gpio_rtl_tri_i[1]} E6
+place_ports {gpio_rtl_tri_i[0]} E5
+save_constraints
+close_design
+make_wrapper -files [get_files C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd] -top
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+write_hw_platform -fixed -force  -include_bit -file C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/system_wrapper_V5.xsa
+ipx::edit_ip_in_project -upgrade true -name MYIP_MOTORDC_DIR_v1_0_project -directory C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.tmp/MYIP_MOTORDC_DIR_v1_0_project c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo/MYIP_MOTORDC_DIR_1.0/component.xml
+update_compile_order -fileset sources_1
+close_project
+ipx::edit_ip_in_project -upgrade true -name MY_IP_STEPPER_v1_0_project -directory C:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.tmp/MY_IP_STEPPER_v1_0_project c:/Users/jon.montero/Downloads/MaquetaFinal/ProyectoMaquetaFinal/ip_repo/MY_IP_STEPPER_1.0/component.xml
+update_compile_order -fileset sources_1
+close_project

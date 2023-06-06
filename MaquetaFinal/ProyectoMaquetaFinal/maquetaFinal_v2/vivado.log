@@ -1,0 +1,67 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Sat Nov 27 10:25:01 2021
+# Process ID: 10020
+# Current directory: C:/Users/a.fernandes/Documents/DASD-20211122T083924Z-001/DASD/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent6792 C:\Users\a.fernandes\Documents\DASD-20211122T083924Z-001\DASD\MaquetaFinal\ProyectoMaquetaFinal\maquetaFinal_v2\maquetaFinal_v2.xpr
+# Log file: C:/Users/a.fernandes/Documents/DASD-20211122T083924Z-001/DASD/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/vivado.log
+# Journal file: C:/Users/a.fernandes/Documents/DASD-20211122T083924Z-001/DASD/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/a.fernandes/Documents/DASD-20211122T083924Z-001/DASD/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.xpr
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'C:/Users/a.fernandes/Documents/DASD-20211122T083924Z-001/DASD/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2'
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/a.fernandes/Documents/DASD-20211122T083924Z-001/DASD/MaquetaFinal/ProyectoMaquetaFinal/ip_repo'.
+WARNING: [IP_Flow 19-3685] Ignored loading user repository 'c:/Users/a.fernandes/Documents/DASD-20211122T083924Z-001/DASD/MaquetaFinal/ProyectoMaquetaFinal/ip_repo/MY_IP_SERVO_1.0'. The path is contained within another repository.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/a.fernandes/Documents/DASD-20211122T083924Z-001/DASD/ips'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'opendeusto.es:user:MYIP_MOTORDC_DIR:1.0'. The one found in IP location 'c:/Users/a.fernandes/Documents/DASD-20211122T083924Z-001/DASD/MaquetaFinal/ProyectoMaquetaFinal/ip_repo/MYIP_MOTORDC_DIR_1.0' will take precedence over the same IP in location c:/Users/a.fernandes/Documents/DASD-20211122T083924Z-001/DASD/ips/MYIP_MOTORDC_DIR_1.0
+open_project: Time (s): cpu = 00:00:17 ; elapsed = 00:00:10 . Memory (MB): peak = 1031.602 ; gain = 273.680
+update_compile_order -fileset sources_1
+open_bd_design {C:/Users/a.fernandes/Documents/DASD-20211122T083924Z-001/DASD/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd}
+Adding component instance block -- xilinx.com:ip:zynq_ultra_ps_e:3.3 - zynq_ultra_ps_e_0
+Adding component instance block -- opendeusto.es:user:MY_IP_HALL_21_22:1.0 - MY_IP_HALL_21_22_0
+Adding component instance block -- xilinx.com:user:MY_IP_HC_SR04:1.0 - MY_IP_HC_SR04_0
+Adding component instance block -- xilinx.com:ip:axi_interconnect:2.1 - ps8_0_axi_periph
+Adding component instance block -- xilinx.com:ip:axi_crossbar:2.1 - xbar
+Adding component instance block -- xilinx.com:ip:axi_dwidth_converter:2.1 - auto_ds
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_dwidth_converter:2.1 - auto_ds
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_dwidth_converter:2.1 - auto_ds
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_dwidth_converter:2.1 - auto_ds
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_dwidth_converter:2.1 - auto_ds
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_dwidth_converter:2.1 - auto_ds
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_dwidth_converter:2.1 - auto_ds
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_dwidth_converter:2.1 - auto_ds
+Adding component instance block -- xilinx.com:ip:axi_dwidth_converter:2.1 - auto_ds
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_dwidth_converter:2.1 - auto_ds
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_dwidth_converter:2.1 - auto_ds
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:proc_sys_reset:5.0 - rst_ps8_0_100M
+Adding component instance block -- opendeusto.es:user:MYIP_MOTORDC_DIR:1.0 - MYIP_MOTORDC_DIR_0
+Adding component instance block -- opendeusto.es:user:MY_IP_STEPPER:1.0 - MY_IP_STEPPER_0
+Adding component instance block -- opendeusto.es:user:MY_IP_CONTADOR_21_22:1.0 - MY_IP_CONTADOR_21_22_0
+Adding component instance block -- opendeusto.es:user:MY_IP_FILTRO_21_22:1.0 - MY_IP_FILTRO_21_22_0
+Adding component instance block -- xilinx.com:user:my_ip_temperatura:1.0 - my_ip_temperatura_0
+Adding component instance block -- xilinx.com:ip:axi_bram_ctrl:4.1 - axi_bram_ctrl_0
+Adding component instance block -- xilinx.com:ip:blk_mem_gen:8.4 - axi_bram_ctrl_0_bram
+Adding component instance block -- xilinx.com:ip:axi_gpio:2.0 - axi_gpio_0
+Adding component instance block -- opendeusto.es:user:MY_IP_SERVO:1.0 - MY_IP_SERVO_0
+Adding component instance block -- xilinx.com:user:PID_IP:1.0 - PID_IP_0
+Successfully read diagram <system> from BD file <C:/Users/a.fernandes/Documents/DASD-20211122T083924Z-001/DASD/MaquetaFinal/ProyectoMaquetaFinal/maquetaFinal_v2/maquetaFinal_v2.srcs/sources_1/bd/system/system.bd>
+open_bd_design: Time (s): cpu = 00:00:07 ; elapsed = 00:00:05 . Memory (MB): peak = 1228.465 ; gain = 88.500
+exit
+INFO: [Common 17-206] Exiting Vivado at Sat Nov 27 10:35:36 2021...

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sdkproject:SdkProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" name="app_maquetafinal" location="C:/Users/jon.montero/Downloads/MaquetaFinal/app_maquetafinal" platform="C:/Users/jon.montero/Downloads/MaquetaFinal/plat_maquetafinal/export/plat_maquetafinal/plat_maquetafinal.xpfm" platformUID="xilinx:ultra96v2::0.0(custom)" systemProject="app_maquetafinal_system" sysConfig="plat_maquetafinal" runtime="C/C++" cpu="standalone_domain" cpuInstance="psu_cortexa53_0" os="standalone" mssSignature="e6f683e5e13bd60a347c953cff05a3d4">
+  <configuration name="Debug" id="xilinx.gnu.arm.a53.exe.debug.1134860649" dirty="true">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+    <lastBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <configuration name="Release" id="xilinx.gnu.arm.a53.exe.release.2086206999" dirty="true">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <template appTemplateName="hello_world"/>
+</sdkproject:SdkProject>
